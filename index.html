@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script>
+      function Shopify() {}
+      Shopify.prototype.onCartUpdate = function() { return true }
+
+      function resetState() {
+        console.log('y');
+        localStorage.removeItem('userGeoState');
+        document.location.reload();
+        return true;
+      }
+      function forceState(what) {
+        var expires = JSON.parse(localStorage.getItem('userGeoState')).expires;
+        console.log(expires);
+        localStorage.setItem('userGeoState', JSON.stringify({
+          state: what,
+          expires: expires
+        }));
+        document.location.reload();
+      }
+      function setValue() {
+        var what = document.getElementById('userValue').value;
+        localStorage.setItem('userValue', what);
+        document.location.reload();
+      }
+      function getValue() {
+        var userValue = localStorage.getItem('userValue');
+        document.getElementsByClassName('shopping-cart__total')[0].innerText = userValue;
+        document.getElementById('userValue').value = userValue;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="shopping-cart__total">R$ 0,00</div>
+    <div id="shippingWrapper"></div>
+    <input id="userValue" value="R$ 0,00">
+    <button type="button" onclick="setValue()">Set value</button>
+    <hr>
+    <button type="button" onclick="resetState()">Reset state</button>
+    <button type="button" onclick="forceState('Sao Paulo')">Force SP</button>
+    <button type="button" onclick="forceState('Rio de Janeiro')">Force RJ</button>
+    <button type="button" onclick="forceState('Minas Gerais')">Force MG</button>
+    <button type="button" onclick="forceState('Rio Grande do Sul')">Force RS</button>
+    <button type="button" onclick="forceState('Parana')">Force PR</button>
+
+    <script>
+     getValue();
+    </script>
+    <script src="geo.js"></script>
+  </body>
+</html>
