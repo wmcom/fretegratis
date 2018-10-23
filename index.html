@@ -22,12 +22,12 @@
         document.location.reload();
       }
       function setValue() {
-        var what = document.getElementById('userValue').value;
+        var what = document.getElementById('userValue').value || 'R$ 0,00';
         localStorage.setItem('userValue', what);
         document.location.reload();
       }
       function getValue() {
-        var userValue = localStorage.getItem('userValue');
+        var userValue = localStorage.getItem('userValue') || 'R$ 0,00';
         document.getElementsByClassName('shopping-cart__total')[0].innerText = userValue;
         document.getElementById('userValue').value = userValue;
       }
