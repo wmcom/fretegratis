@@ -30,21 +30,28 @@
         var userValue = localStorage.getItem('userValue') || 'R$ 0,00';
         document.getElementsByClassName('shopping-cart__total')[0].innerText = userValue;
         document.getElementById('userValue').value = userValue;
+
+        if(!localStorage.getItem('userGeoState')) {
+          localStorage.setItem('userGeoState', JSON.stringify({
+            state: 'SAO PAULO',
+            expires: (Date.now() + (8*24*60*60*1000))
+          }));
+        }
       }
     </script>
   </head>
   <body>
-    <div class="shopping-cart__total">R$ 0,00</div>
+    <div class="shopping-cart__total" style="display: none">R$ 0,00</div>
     <div id="shippingWrapper"></div>
     <input id="userValue" value="R$ 0,00">
     <button type="button" onclick="setValue()">Set value</button>
     <hr>
     <button type="button" onclick="resetState()">Reset state</button>
-    <button type="button" onclick="forceState('Sao Paulo')">Force SP</button>
-    <button type="button" onclick="forceState('Rio de Janeiro')">Force RJ</button>
-    <button type="button" onclick="forceState('Minas Gerais')">Force MG</button>
-    <button type="button" onclick="forceState('Rio Grande do Sul')">Force RS</button>
-    <button type="button" onclick="forceState('Parana')">Force PR</button>
+    <button type="button" onclick="forceState('SAO PAULO')">Force SP</button>
+    <button type="button" onclick="forceState('RIO DE JANEIRO')">Force RJ</button>
+    <button type="button" onclick="forceState('MINAS GERAIS')">Force MG</button>
+    <button type="button" onclick="forceState('RIO GRANDE DO SUL')">Force RS</button>
+    <button type="button" onclick="forceState('PARANA')">Force PR</button>
 
     <script>
      getValue();
