@@ -4,10 +4,10 @@ var displayPriceTimeout,
     widgetReporting = false,
     shipState = {
       'SAO PAULO': { code: 'SP', title: 'São Paulo', value: 79.00 },
-      'RIO DE JANEIRO': { code: 'RJ', title: 'Rio de Janeiro', value: 149.99 },
-      'MINAS GERAIS': { code: 'MG', title: 'Minas Gerais', value: 149.99 },
-      'RIO GRANDE DO SUL': { code: 'RS', title: 'Rio Grande do Sul', value: 149.99 },
-      'PARANA': { code: 'PR', title: 'Paraná', value: 149.99 }
+      'RIO DE JANEIRO': { code: 'RJ', title: 'Rio de Janeiro', value: 149.00 },
+      'MINAS GERAIS': { code: 'MG', title: 'Minas Gerais', value: 149.00 },
+      'RIO GRANDE DO SUL': { code: 'RS', title: 'Rio Grande do Sul', value: 149.00 },
+      'PARANA': { code: 'PR', title: 'Paraná', value: 149.00 }
     };
 
 function displayPrice(state) {
