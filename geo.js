@@ -2,11 +2,11 @@
 // RJ, MG, RS, PR - R$ 149
 var displayPriceTimeout,
     shipState = {
-      'Sao Paulo': { code: 'SP', title: 'São Paulo', value: 79.00 },
-      'Rio de Janeiro': { code: 'RJ', title: 'Rio de Janeiro', value: 149.99 },
-      'Minas Gerais': { code: 'MG', title: 'Minas Gerais', value: 149.99 },
-      'Rio Grande do Sul': { code: 'RS', title: 'Rio Grande do Sul', value: 149.99 },
-      'Parana': { code: 'PR', title: 'Paraná', value: 149.99 }
+      'SAO PAULO': { code: 'SP', title: 'São Paulo', value: 79.00 },
+      'RIO DE JANEIRO': { code: 'RJ', title: 'Rio de Janeiro', value: 149.99 },
+      'MINAS GERAIS': { code: 'MG', title: 'Minas Gerais', value: 149.99 },
+      'RIO GRANDE DO SUL': { code: 'RS', title: 'Rio Grande do Sul', value: 149.99 },
+      'PARANA': { code: 'PR', title: 'Paraná', value: 149.99 }
     };
 
 function displayPrice(state) {
@@ -77,7 +77,7 @@ function processGeo() {
     var userGeoState = JSON.parse(localStorage.getItem('userGeoState')),
         now = Date.now();
 
-    if(userGeoState.expires < now) {
+    if(userGeoState.expires && userGeoState.expires < now) {
       console.log('expired storage item, removing');
       localStorage.removeItem('userGeoState');
       userGeoState = null;
@@ -104,7 +104,7 @@ function callback(userGeo) {
       userGeoState;
 
   if(userGeo && userGeo.state) {
-    userGeoState = { state: userGeo.state, expires: userGeoExpire };
+    userGeoState = { state: userGeo.state.toUpperCase(), expires: userGeoExpire };
     // force STATE
     //userGeoState.state = 'Rio de Janeiro';
     console.log('has state, setting storage', userGeoState);
